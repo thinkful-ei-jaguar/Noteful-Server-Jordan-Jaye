@@ -15,6 +15,21 @@ const serializeNote = note => ({
 });
 
 notesRouter
+  .route('/api/')
+  .delete((req, res, next) => {
+    const { id } = req.body;
+    notesService.deleteNote(
+      req.app.get('db'),
+      id
+    )
+      .then(numRowsAffected => {
+        res.status(204).end();
+      })
+      .catch(next);
+  }),
+
+
+notesRouter
   .route('/api/notes')
   .get((req, res, next) => {
     const knexInstance = req.app.get('db');
@@ -71,6 +86,7 @@ notesRouter
     res.json(serializeNote(res.note));
   })
   .delete((req, res, next) => {
+    console.log('delete in notes router firing!');
     notesService.deleteNote(
       req.app.get('db'),
       req.params.note_id
