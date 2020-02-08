@@ -23,18 +23,19 @@ foldersRouter
       .catch(next);
   })
   .post(jsonParser, (req, res, next) => {
-    const { id, folder_name } = req.body;
-    const newfolder = { id, folder_name };
+    const { folder_name } = req.body;
+    const newFolder = folder_name;
+    console.log('new folder:', newFolder);
 
-    if (folder_name === null) {
+    if (newFolder == null) {
       return res.status(400).json({
         error: { message: 'Missing folder_name in request body' }
       });
     }
 
-    foldersService.insertfolder(
+    foldersService.insertFolder(
       req.app.get('db'),
-      newfolder
+      newFolder
     )
       .then(folder => {
         res
