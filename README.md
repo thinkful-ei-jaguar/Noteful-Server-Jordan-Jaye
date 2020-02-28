@@ -1,6 +1,6 @@
 # Noteful - Server 
 
-## Deplyed Client: https://noteful-app-h99y0popj.now.sh/
+## Deplyed Client: https://noteful-app-esg0caybl.now.sh/
 
 ## Scripts
 
